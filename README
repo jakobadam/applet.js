@@ -1,0 +1,8 @@
+## Summary:
+
+applet.js does two things:
+* Tests for presence of the Java Plugin 
+* Injects applets with valid html. 
+
+All applets are injected with the mayscript attribute set. That attribute enables liveconnect in mozilla based browser - in other browsers it's enabled by default.
+
