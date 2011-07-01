@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Java Enabled Check</title>
+</head>
+<body>
+  <noscript>Enable JavaScript for this page to work</noscript>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script src="applet.js"></script>
+  <script>
+  $(document).ready(function(){
+    var declarations = [ "font-weight:bold","position:fixed","top:0px","width:100%","text-align:center","z-index:1000","left:0px","height:20px"],
+        notice;
+
+    if(!applet.isEnabled('1.6')){
+      declarations.push("background-color: #FDD");
+      notice = jQuery('<div style="' + declarations.join(";") + '">Java is not present, please enable or download <a href="' + java.java_url + '">here</a>!</div>');
+    }
+    else{
+      declarations.push("background-color: #DFD");
+      notice = jQuery('<div style="' + declarations.join(";") + '">Java is enabled (' + applet.version + ')</div>');
+    }
+    jQuery('body').prepend(notice);
+  });
+</script>
+</body>
+</html>
