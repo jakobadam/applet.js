@@ -68,27 +68,32 @@
       }
    }
 
-   function isEnabled(min_version){
+   function hasVersion(min_version){
+     console.log(min_version);
 
-     if(navigator.vendor && navigator.vendor.indexOf("Apple")){
+     if(navigator.vendor && (navigator.vendor.indexOf("Apple") !== -1)){
+       console.log('safari');
+
        // safari
-       return hasJava();
+       return hasPlugin();
      }
      
      if(min_version !== undefined){
+       console.log('version', version);
+
        return min_version <= version;
      }
      else{
-       return hasJava();
+       return hasPlugin();
      }
    }
+  
+  function hasPlugin(){
+    return (version === "-1") ? false : true;
+  }
 
   function paramify(key, value){
     return '  <param name="' + key + '" value="' + value + '" />';      
-  }
-
-  function hasJava(){
-    return (version === "-1") ? false : true;
   }
 
   // init
@@ -96,13 +101,14 @@
 
   $.applet = {
 
-    hasJava: hasJava,
-    isEnabled: isEnabled,
+    plugin: hasPlugin(),
+    hasVersion: hasVersion,
     version: version,
+    java_url: java_url,
 
     inject: function(node, args){
 
-      if(!hasJava()){
+      if(!this.plugin){
         if(args.noJava){
           args.noJava();
         }
@@ -112,7 +118,7 @@
       }
 
       if(args.min_version){
-        if(!isEnabled(args.min_version)){
+        if(!hasVersion(args.min_version)){
           alert('Applet requires at least Java plugin version ' + args.min_version);
           return;
         }

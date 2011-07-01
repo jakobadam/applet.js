@@ -14,9 +14,9 @@
     var declarations = [ "font-weight:bold","position:fixed","top:0px","width:100%","text-align:center","z-index:1000","left:0px","height:20px"],
         notice;
 
-    if(!applet.isEnabled('1.6')){
+    if(!applet.hasVersion('1.6')){
       declarations.push("background-color: #FDD");
-      notice = jQuery('<div style="' + declarations.join(";") + '">Java is not present, please enable or download <a href="' + java.java_url + '">here</a>!</div>');
+      notice = jQuery('<div style="' + declarations.join(";") + '">Java is not present, please enable or download <a href="' + applet.java_url + '">here</a>!</div>');
     }
     else{
       declarations.push("background-color: #DFD");
