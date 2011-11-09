@@ -1,29 +1,47 @@
 <!doctype html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Java Enabled Check</title>
-</head>
-<body>
-  <noscript>Enable JavaScript for this page to work</noscript>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-  <script src="applet.js"></script>
-  <script>
-  $(document).ready(function(){
-    var declarations = [ "font-weight:bold","position:fixed","top:0px","width:100%","text-align:center","z-index:1000","left:0px","height:20px"],
-        notice;
+    <head>
+        <meta charset="utf-8">
+        <title>Java Enabled Check</title>
+        <script>
+            var djConfig = { 
+            baseUrl: "/d/",
+            debugAtAllCosts: true
+            }; 
+        </script>
+        <script src="//static.irigo.com/dojo/1.6.1/dojo/dojo.xd.js"></script>
+        <style>
+            #notice{
+                font-weight:bold;
+                position:fixed;
+                top:0px;
+                width:100%;
+                text-align:
+                center;
+                z-index:1000;
+                left:0px;
+                height:20px
+            }
+        </style>
+    </head>
+    <body>
+        <div id="notice"></div>
+        <noscript>Enable JavaScript for this page to work</noscript>
+        <script src="applet.js"></script>
+        <script>
+  dojo.require('java.applet');
+  dojo.ready(function(){
+    var notice = dojo.byId('notice');
 
     if(!applet.hasVersion('1.6')){
-      declarations.push("background-color: #FDD");
-      notice = jQuery('<div style="' + declarations.join(";") + '">Java is not present, please enable or download <a href="' + applet.java_url + '">here</a>!</div>');
+        dojo.style(notice,'background-color','#FDD');
+        notice.innerHTML = 'Java is not present, please enable or download <a href="' + applet.javaUrl + '">here</a>!</div>';
     }
     else{
-      declarations.push("background-color: #DFD");
-      notice = jQuery('<div style="' + declarations.join(";") + '">Java is enabled (' + applet.version + ')</div>');
+        dojo.style(notice,'background-color', '#DFD');
+        notice.innerHTML = 'Java is enabled (' + applet.version + ')';
     }
-    jQuery('body').prepend(notice);
   });
-</script>
-</body>
+        </script>
+    </body>
 </html>
