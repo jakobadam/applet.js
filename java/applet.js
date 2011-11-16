@@ -136,7 +136,9 @@ if(typeof dojo !== 'undefined'){ dojo.provide('java.applet'); }
         params.join('\n'),
         '</object>'].join('\n');
       setTimeout(function(){
-        node.innerHTML += t;
+        var wrapperNode = document.createElement('span');
+        wrapperNode.innerHTML = t;
+        node.appendChild(wrapperNode);
       }, 0);}
         
   };
