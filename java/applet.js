@@ -136,7 +136,7 @@ if(typeof dojo !== 'undefined'){ dojo.provide('java.applet'); }
         params.join('\n'),
         '</object>'].join('\n');
       setTimeout(function(){
-        node.innerHTML = t;
+        node.innerHTML += t;
       }, 0);}
         
   };
